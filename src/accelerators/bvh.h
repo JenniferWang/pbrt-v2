@@ -36,6 +36,9 @@
 #ifndef PBRT_ACCELERATORS_BVH_H
 #define PBRT_ACCELERATORS_BVH_H
 
+#define DeltaACC 4
+
+
 // accelerators/bvh.h*
 #include "pbrt.h"
 #include "primitive.h"
@@ -44,6 +47,9 @@ struct BVHBuildNode;
 // BVHAccel Forward Declarations
 struct BVHPrimitiveInfo;
 struct LinearBVHNode;
+
+// TAG: ADDED
+struct MortonCode;
 
 // BVHAccel Declarations
 class BVHAccel : public Aggregate {
@@ -61,14 +67,23 @@ private:
     BVHBuildNode *recursiveBuild(MemoryArena &buildArena,
         vector<BVHPrimitiveInfo> &buildData, uint32_t start, uint32_t end,
         uint32_t *totalNodes, vector<Reference<Primitive> > &orderedPrims);
+    
     uint32_t flattenBVHTree(BVHBuildNode *node, uint32_t *offset);
 
     // BVHAccel Private Data
     uint32_t maxPrimsInNode;
-    enum SplitMethod { SPLIT_MIDDLE, SPLIT_EQUAL_COUNTS, SPLIT_SAH };
+    enum SplitMethod { SPLIT_MIDDLE, SPLIT_EQUAL_COUNTS, SPLIT_SAH, SPLIT_AAC };
     SplitMethod splitMethod;
     vector<Reference<Primitive> > primitives;
     LinearBVHNode *nodes;
+    
+    // TAG: ADDED
+    BVHBuildNode *buildAAC(MemoryArena &buildArena, vector<BVHPrimitiveInfo> &buildData, uint32_t start, uint32_t end, uint32_t *totalNodes, vector<Reference<Primitive> > &orderedPrims);
+    
+    void combineClusters(MemoryArena &buildArena, vector<BVHBuildNode *>& clusterList, uint32_t maxNumClusters, uint32_t *totalNodes);
+    
+    vector<BVHBuildNode *> recursiveBuildAAC(MemoryArena &buildArena, vector<BVHPrimitiveInfo> &buildData, uint32_t start, uint32_t end, uint32_t *totalNodes, vector<Reference<Primitive> > &orderedPrims, int32_t curr_bit);
+
 };
 
 
