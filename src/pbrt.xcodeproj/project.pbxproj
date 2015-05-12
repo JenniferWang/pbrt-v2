@@ -1011,7 +1011,7 @@
 				);
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = pbrt;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 			};
 			name = Debug;
 		};
@@ -1028,7 +1028,7 @@
 				);
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = pbrt;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 			};
 			name = Release;
 		};
@@ -1100,7 +1100,7 @@
 				);
 				INSTALL_PATH = /usr/local/bin;
 				PRODUCT_NAME = pbrt;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx10.9;
 			};
 			name = dtrace;
 		};

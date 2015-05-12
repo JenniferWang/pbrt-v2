@@ -29,7 +29,7 @@
 
  */
 
-#include "timer.h"
+
 // core/api.cpp*
 #include "stdafx.h"
 #include "api.h"
@@ -49,6 +49,7 @@
 #include "cameras/environment.h"
 #include "cameras/orthographic.h"
 #include "cameras/perspective.h"
+#include "cameras/realistic.h"
 #include "film/image.h"
 #include "filters/box.h"
 #include "filters/gaussian.h"
@@ -580,8 +581,6 @@ VolumeIntegrator *MakeVolumeIntegrator(const string &name,
 Primitive *MakeAccelerator(const string &name,
         const vector<Reference<Primitive> > &prims,
         const ParamSet &paramSet) {
-    Timer myTimer;
-    myTimer.Start();
     Primitive *accel = NULL;
     if (name == "bvh")
         accel = CreateBVHAccelerator(prims, paramSet);
@@ -592,8 +591,6 @@ Primitive *MakeAccelerator(const string &name,
     else
         Warning("Accelerator \"%s\" unknown.", name.c_str());
     paramSet.ReportUnused();
-    printf("Elapsed time to build acceleration structure: %.2f seconds\n", myTimer.Time());
-    return accel;
     return accel;
 }
 
@@ -615,6 +612,8 @@ Camera *MakeCamera(const string &name,
         camera = CreateOrthographicCamera(paramSet, animatedCam2World, film);
     else if (name == "environment")
         camera = CreateEnvironmentCamera(paramSet, animatedCam2World, film);
+    else if (name == "realistic")
+        camera = CreateRealisticCamera(paramSet, animatedCam2World, film);
     else
         Warning("Camera \"%s\" unknown.", name.c_str());
     paramSet.ReportUnused();

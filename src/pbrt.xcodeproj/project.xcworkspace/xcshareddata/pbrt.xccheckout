@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3471F715-D6FA-4EA5-8C82-57762DAE4401</string>
+	<key>IDESourceControlProjectName</key>
+	<string>pbrt</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1295A571F34B151C23297479041C641730156B75</key>
+		<string>https://github.com/JenniferWang/pbrt-v2</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>src/pbrt.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1295A571F34B151C23297479041C641730156B75</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/JenniferWang/pbrt-v2</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1295A571F34B151C23297479041C641730156B75</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1295A571F34B151C23297479041C641730156B75</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CS348b</string>
+		</dict>
+	</array>
+</dict>
+</plist>

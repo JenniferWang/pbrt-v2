@@ -37,6 +37,8 @@
 #include "paramset.h"
 #define FLT_MAX 3.40282347E+38F
 #define MORTONBIT 10
+#define MAXDIGIT 10
+#define BASE 8
 
 // BVHAccel Local Declarations
 struct BVHPrimitiveInfo {
@@ -191,7 +193,33 @@ static void computeMortonCodes(vector<BVHPrimitiveInfo>& buildData) {
     }
 }
 
+static void countSort( vector<BVHPrimitiveInfo>& arr, int exp ) {
+    // sort number from 0 to range
+    int count[BASE] = {0};
+    vector<BVHPrimitiveInfo> output(arr.size());
+    for (int i = 0; i < arr.size(); i++) {
+        count[(arr[i].mortonCode / exp) % BASE] ++;
+    }
+    for (int i = 1; i < BASE; i++) {
+        count[i] += count[i - 1];
+    }
+    for (int i = arr.size() - 1; i >= 0; i--) {
+        output[count[(arr[i].mortonCode / exp) % BASE] - 1] = arr[i];
+        count[(arr[i].mortonCode / exp) % BASE] --;
+    }
+    arr = output;
+}
+
+static void radixSort( vector<BVHPrimitiveInfo>& arr ) {
+    int exponent = 1;
+    for (int d = 0; d < MAXDIGIT; d++) {
+        countSort(arr, exponent);
+        exponent *= BASE;
+    }
+}
+
 static void sortPrimitivesByMortonCodes(vector<BVHPrimitiveInfo>& buildData) {
+    //radixSort(buildData);
     std::sort(buildData.begin(), buildData.end(), MortonSort());
 }
 
